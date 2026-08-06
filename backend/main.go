@@ -28,6 +28,10 @@ func main() {
 
 	router := mux.NewRouter()
 
+	router.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
+		w.Write([]byte("Mini Kanban API funcionando"))
+	}).Methods("GET")
+
 	router.HandleFunc("/tasks", GetTasks).Methods("GET")
 	router.HandleFunc("/tasks", CreateTask).Methods("POST")
 	router.HandleFunc("/tasks/{id}", UpdateTask).Methods("PUT")
