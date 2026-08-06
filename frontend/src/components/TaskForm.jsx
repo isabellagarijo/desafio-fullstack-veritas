@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import "./TaskForm.css";
 
 function TaskForm({
   addTask,
@@ -49,7 +50,11 @@ function TaskForm({
   }
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form className="task-form" onSubmit={handleSubmit}>
+      <h2>
+        {editingTask ? "Editar tarefa" : "Nova tarefa"}
+      </h2>
+
       <input
         type="text"
         placeholder="Título da tarefa"
@@ -59,27 +64,29 @@ function TaskForm({
         }
       />
 
-      <input
-        type="text"
-        placeholder="Descrição"
+      <textarea
+        placeholder="Descrição da tarefa"
         value={description}
         onChange={(e) =>
           setDescription(e.target.value)
         }
       />
 
-      <button type="submit">
-        {editingTask ? "Salvar" : "Adicionar"}
-      </button>
-
-      {editingTask && (
-        <button
-          type="button"
-          onClick={cancelEdit}
-        >
-          Cancelar
+      <div className="form-buttons">
+        <button type="submit" className="primary-button">
+          {editingTask ? "Salvar" : "Adicionar"}
         </button>
-      )}
+
+        {editingTask && (
+          <button
+            type="button"
+            className="cancel-button"
+            onClick={cancelEdit}
+          >
+            Cancelar
+          </button>
+        )}
+      </div>
     </form>
   );
 }

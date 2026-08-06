@@ -1,3 +1,5 @@
+import "./TaskCard.css";
+
 function TaskCard({ task, updateTaskStatus, deleteTask, editTask }) {
   return (
     <div className="task-card">
@@ -5,46 +7,48 @@ function TaskCard({ task, updateTaskStatus, deleteTask, editTask }) {
 
       <p>{task.description}</p>
 
-      <div>
-        <button
-          onClick={() =>
-            editTask(task)
-          }
-        >
-          Editar
-        </button>
+      <div className="task-actions">
+        <div className="main-actions">
+          <button
+            className="edit-button"
+            onClick={() => editTask(task)}
+          >
+            Editar
+          </button>
 
-        <button
-          onClick={() =>
-            updateTaskStatus(task.id, "todo")
-          }
-        >
-          A Fazer
-        </button>
+          <button
+            className="delete-button"
+            onClick={() => deleteTask(task.id)}
+          >
+            Excluir
+          </button>
+        </div>
 
-        <button
-          onClick={() =>
-            updateTaskStatus(task.id, "doing")
-          }
-        >
-          Em Progresso
-        </button>
+        <div className="move-actions">
+          <button
+            onClick={() =>
+              updateTaskStatus(task.id, "todo")
+            }
+          >
+            A Fazer
+          </button>
 
-        <button
-          onClick={() =>
-            updateTaskStatus(task.id, "done")
-          }
-        >
-          Concluído
-        </button>
+          <button
+            onClick={() =>
+              updateTaskStatus(task.id, "doing")
+            }
+          >
+            Em Progresso
+          </button>
 
-        <button
-          onClick={() =>
-            deleteTask(task.id)
-          }
-        >
-          Excluir
-        </button>
+          <button
+            onClick={() =>
+              updateTaskStatus(task.id, "done")
+            }
+          >
+            Concluído
+          </button>
+        </div>
       </div>
     </div>
   );

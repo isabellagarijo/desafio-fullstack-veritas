@@ -1,4 +1,5 @@
 import Column from "./Column";
+import "./Board.css";
 
 function Board({
   tasks,

@@ -14,7 +14,9 @@ function Column({
 
   return (
     <div className="column">
-      <h2>{title}</h2>
+      <h2>
+        {title} ({filteredTasks.length})
+      </h2>
 
       {filteredTasks.map((task) => (
         <TaskCard

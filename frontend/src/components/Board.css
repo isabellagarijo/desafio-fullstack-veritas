@@ -1,0 +1,78 @@
+.board {
+  display: flex;
+  gap: 24px;
+  padding: 30px;
+  justify-content: center;
+  align-items: flex-start;
+  flex-wrap: wrap;
+}
+
+
+.column {
+  width: 320px;
+  min-height: 450px;
+  padding: 20px;
+  border-radius: 16px;
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+}
+
+
+/* A Fazer */
+.column:nth-child(1) {
+  background: #f8fafc;
+}
+
+
+/* Em Progresso */
+.column:nth-child(2) {
+  background: #eff6ff;
+  border-color: #bfdbfe;
+}
+
+
+/* Concluído */
+.column:nth-child(3) {
+  background: #f0fdf4;
+  border-color: #bbf7d0;
+}
+
+
+.column h2 {
+  margin-top: 0;
+  margin-bottom: 20px;
+  font-size: 20px;
+  color: #1e293b;
+  text-align: center;
+}
+
+
+.task-card {
+  background: white;
+  padding: 18px;
+  margin-top: 15px;
+  border-radius: 12px;
+  border: 1px solid #e5e7eb;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+
+.task-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 18px rgba(0,0,0,0.12);
+}
+
+
+.task-card h3 {
+  margin: 0 0 10px;
+  font-size: 17px;
+  color: #111827;
+}
+
+
+.task-card p {
+  margin: 0;
+  color: #64748b;
+  font-size: 14px;
+}

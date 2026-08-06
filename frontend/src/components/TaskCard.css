@@ -1,0 +1,68 @@
+.task-card {
+  background: white;
+  padding: 18px;
+  margin-top: 15px;
+  border-radius: 12px;
+  border: 1px solid #e5e7eb;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+}
+
+
+.task-card h3 {
+  margin: 0 0 10px;
+  color: #111827;
+}
+
+
+.task-card p {
+  color: #64748b;
+  font-size: 14px;
+  min-height: 20px;
+}
+
+
+.task-actions {
+  margin-top: 15px;
+}
+
+
+.main-actions,
+.move-actions {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+
+.move-actions {
+  margin-top: 12px;
+}
+
+
+.task-actions button {
+  border: none;
+  padding: 7px 12px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 13px;
+  background: #e2e8f0;
+  color: #334155;
+  transition: 0.2s;
+}
+
+
+.task-actions button:hover {
+  transform: translateY(-2px);
+}
+
+
+.edit-button {
+  background: #2563eb !important;
+  color: white !important;
+}
+
+
+.delete-button {
+  background: #dc2626 !important;
+  color: white !important;
+}
