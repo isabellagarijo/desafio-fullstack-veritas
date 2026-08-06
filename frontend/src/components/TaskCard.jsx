@@ -1,10 +1,19 @@
-function TaskCard({ task, updateTaskStatus, deleteTask }) {
+function TaskCard({ task, updateTaskStatus, deleteTask, editTask }) {
   return (
     <div className="task-card">
       <h3>{task.title}</h3>
+
       <p>{task.description}</p>
 
       <div>
+        <button
+          onClick={() =>
+            editTask(task)
+          }
+        >
+          Editar
+        </button>
+
         <button
           onClick={() =>
             updateTaskStatus(task.id, "todo")

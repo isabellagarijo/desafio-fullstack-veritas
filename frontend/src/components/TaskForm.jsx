@@ -1,24 +1,49 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
-function TaskForm({ addTask }) {
+function TaskForm({
+  addTask,
+  editingTask,
+  saveTask,
+  setEditingTask,
+}) {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
+
+  useEffect(() => {
+    if (editingTask) {
+      setTitle(editingTask.title);
+      setDescription(editingTask.description);
+    }
+  }, [editingTask]);
 
   async function handleSubmit(e) {
     e.preventDefault();
 
     if (!title) return;
 
-    const newTask = {
+    const task = {
       title,
       description,
-      status: "todo",
+      status: editingTask
+        ? editingTask.status
+        : "todo",
     };
 
-    console.log("Enviando tarefa:", newTask);
+    if (editingTask) {
+      await saveTask({
+        ...task,
+        id: editingTask.id,
+      });
+    } else {
+      await addTask(task);
+    }
 
-    await addTask(newTask);
+    setTitle("");
+    setDescription("");
+  }
 
+  function cancelEdit() {
+    setEditingTask(null);
     setTitle("");
     setDescription("");
   }
@@ -29,19 +54,32 @@ function TaskForm({ addTask }) {
         type="text"
         placeholder="Título da tarefa"
         value={title}
-        onChange={(e) => setTitle(e.target.value)}
+        onChange={(e) =>
+          setTitle(e.target.value)
+        }
       />
 
       <input
         type="text"
         placeholder="Descrição"
         value={description}
-        onChange={(e) => setDescription(e.target.value)}
+        onChange={(e) =>
+          setDescription(e.target.value)
+        }
       />
 
       <button type="submit">
-        Adicionar
+        {editingTask ? "Salvar" : "Adicionar"}
       </button>
+
+      {editingTask && (
+        <button
+          type="button"
+          onClick={cancelEdit}
+        >
+          Cancelar
+        </button>
+      )}
     </form>
   );
 }

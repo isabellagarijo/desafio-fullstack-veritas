@@ -1,6 +1,11 @@
 import Column from "./Column";
 
-function Board({ tasks, updateTaskStatus, deleteTask }) {
+function Board({
+  tasks,
+  updateTaskStatus,
+  deleteTask,
+  editTask,
+}) {
   const columns = [
     {
       title: "A Fazer",
@@ -26,6 +31,7 @@ function Board({ tasks, updateTaskStatus, deleteTask }) {
           tasks={tasks}
           updateTaskStatus={updateTaskStatus}
           deleteTask={deleteTask}
+          editTask={editTask}
         />
       ))}
     </div>

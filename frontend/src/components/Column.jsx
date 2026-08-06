@@ -1,6 +1,13 @@
 import TaskCard from "./TaskCard";
 
-function Column({ title, status, tasks, updateTaskStatus, deleteTask }) {
+function Column({
+  title,
+  status,
+  tasks,
+  updateTaskStatus,
+  deleteTask,
+  editTask,
+}) {
   const filteredTasks = tasks.filter(
     (task) => task.status === status
   );
@@ -15,6 +22,7 @@ function Column({ title, status, tasks, updateTaskStatus, deleteTask }) {
           task={task}
           updateTaskStatus={updateTaskStatus}
           deleteTask={deleteTask}
+          editTask={editTask}
         />
       ))}
     </div>

@@ -36,6 +36,14 @@ func CreateTask(w http.ResponseWriter, r *http.Request) {
 		task.Status = "todo"
 	}
 
+	if task.Status != "todo" &&
+		task.Status != "doing" &&
+		task.Status != "done" {
+
+		http.Error(w, "Status inválido", http.StatusBadRequest)
+		return
+	}
+
 	task.ID = nextID
 	nextID++
 
@@ -52,6 +60,7 @@ func UpdateTask(w http.ResponseWriter, r *http.Request) {
 	var updated Task
 
 	err := json.NewDecoder(r.Body).Decode(&updated)
+
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusBadRequest)
 		return
@@ -63,6 +72,14 @@ func UpdateTask(w http.ResponseWriter, r *http.Request) {
 
 			if updated.Title == "" {
 				http.Error(w, "Título obrigatório", http.StatusBadRequest)
+				return
+			}
+
+			if updated.Status != "todo" &&
+				updated.Status != "doing" &&
+				updated.Status != "done" {
+
+				http.Error(w, "Status inválido", http.StatusBadRequest)
 				return
 			}
 
