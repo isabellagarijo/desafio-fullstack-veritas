@@ -50,6 +50,42 @@ Entre na pasta:
 cd backend
 ```
 
+Execute a API:
+
+```bash
+go run .
+```
+
+O backend será iniciado em:
+
+```bash
+http://localhost:8080
+```
+
+---
+
+## Frontend
+
+Entre na pasta:
+
+```bash
+cd frontend
+```
+
+Instale as dependências:
+
+```bash
+npm install
+```
+
+Execute a aplicação:
+
+```bash
+npm run dev
+```
+
+Após iniciar, acesse o endereço informado pelo terminal.
+
 ---
 
 ## User Flow
@@ -57,6 +93,8 @@ cd backend
 Fluxo das principais ações do usuário no sistema:
 
 ![User Flow](docs/user-flow.png)
+
+---
 
 ## Decisões técnicas
 
@@ -73,6 +111,7 @@ Atualmente as tarefas são armazenadas em memória e são perdidas quando o serv
 Como melhoria futura, seria possível implementar persistência em arquivo JSON ou banco de dados para manter os dados salvos permanentemente.
 
 Outras melhorias possíveis:
-- Implementação de testes automatizados;
-- Drag and drop para movimentação das tarefas;
-- Melhorias de acessibilidade e feedbacks visuais.
+
+* Implementação de testes automatizados;
+* Drag and drop para movimentação das tarefas;
+* Melhorias de acessibilidade e feedbacks visuais.
