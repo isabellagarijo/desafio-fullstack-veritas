@@ -1,0 +1,29 @@
+.board {
+  display: flex;
+  gap: 20px;
+  padding: 20px;
+}
+
+.column {
+  background: #f4f4f4;
+  width: 300px;
+  min-height: 400px;
+  padding: 15px;
+  border-radius: 8px;
+}
+
+.column h2 {
+  margin-top: 0;
+}
+
+.task-card {
+  background: white;
+  padding: 15px;
+  margin-top: 15px;
+  border-radius: 6px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.task-card h3 {
+  margin: 0 0 10px;
+}
