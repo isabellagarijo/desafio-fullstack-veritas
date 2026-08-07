@@ -36,29 +36,37 @@ function TaskCard({ task, updateTaskStatus, deleteTask, editTask }) {
         </div>
 
         <div className="move-actions">
-          <button
-            onClick={() =>
-              updateTaskStatus(task.id, "todo")
-            }
-          >
-            A Fazer
-          </button>
 
-          <button
-            onClick={() =>
-              updateTaskStatus(task.id, "doing")
-            }
-          >
-            Em Progresso
-          </button>
+          {task.status !== "todo" && (
+            <button
+              onClick={() =>
+                updateTaskStatus(task.id, "todo")
+              }
+            >
+              A Fazer
+            </button>
+          )}
 
-          <button
-            onClick={() =>
-              updateTaskStatus(task.id, "done")
-            }
-          >
-            Concluído
-          </button>
+          {task.status !== "doing" && (
+            <button
+              onClick={() =>
+                updateTaskStatus(task.id, "doing")
+              }
+            >
+              Em Progresso
+            </button>
+          )}
+
+          {task.status !== "done" && (
+            <button
+              onClick={() =>
+                updateTaskStatus(task.id, "done")
+              }
+            >
+              Concluído
+            </button>
+          )}
+
         </div>
       </div>
     </div>
