@@ -16,6 +16,12 @@ function TaskCard({ task, updateTaskStatus, deleteTask, editTask }) {
     <div className="task-card">
       <h3>{task.title}</h3>
 
+      <div className={`status-badge ${task.status}`}>
+        {task.status === "todo" && "A Fazer"}
+        {task.status === "doing" && "Em Progresso"}
+        {task.status === "done" && "Concluído"}
+      </div>
+
       <p>{task.description}</p>
 
       <div className="task-actions">

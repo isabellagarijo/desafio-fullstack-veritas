@@ -66,3 +66,30 @@
   background: #dc2626 !important;
   color: white !important;
 }
+
+.status-badge {
+  display: inline-block;
+  margin: 0 0 12px;
+  padding: 5px 12px;
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+
+.status-badge.todo {
+  background: #dbeafe;
+  color: #1d4ed8;
+}
+
+
+.status-badge.doing {
+  background: #fef3c7;
+  color: #b45309;
+}
+
+
+.status-badge.done {
+  background: #dcfce7;
+  color: #15803d;
+}
