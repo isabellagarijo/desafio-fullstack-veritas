@@ -9,6 +9,7 @@ function TaskForm({
 }) {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
+  const [error, setError] = useState("");
 
   useEffect(() => {
     if (editingTask) {
@@ -20,7 +21,12 @@ function TaskForm({
   async function handleSubmit(e) {
     e.preventDefault();
 
-    if (!title) return;
+    if (!title.trim()) {
+      setError("O título da tarefa é obrigatório.");
+      return;
+    }
+
+    setError("");
 
     const task = {
       title,
@@ -47,6 +53,7 @@ function TaskForm({
     setEditingTask(null);
     setTitle("");
     setDescription("");
+    setError("");
   }
 
   return (
@@ -59,10 +66,17 @@ function TaskForm({
         type="text"
         placeholder="Título da tarefa"
         value={title}
-        onChange={(e) =>
-          setTitle(e.target.value)
-        }
+        onChange={(e) => {
+          setTitle(e.target.value);
+          setError("");
+        }}
       />
+
+      {error && (
+        <p className="form-error">
+          {error}
+        </p>
+      )}
 
       <textarea
         placeholder="Descrição da tarefa"
@@ -73,7 +87,10 @@ function TaskForm({
       />
 
       <div className="form-buttons">
-        <button type="submit" className="primary-button">
+        <button
+          type="submit"
+          className="primary-button"
+        >
           {editingTask ? "Salvar" : "Adicionar"}
         </button>
 
