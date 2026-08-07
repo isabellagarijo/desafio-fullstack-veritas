@@ -3,6 +3,7 @@ package main
 import (
 	"encoding/json"
 	"net/http"
+	"os"
 	"strconv"
 
 	"github.com/gorilla/mux"
@@ -11,10 +12,35 @@ import (
 var tasks = []Task{}
 var nextID = 1
 
+
+func saveTasks() {
+	data, _ := json.MarshalIndent(tasks, "", "  ")
+	os.WriteFile("tasks.json", data, 0644)
+}
+
+
+func loadTasks() {
+	data, err := os.ReadFile("tasks.json")
+
+	if err != nil {
+		return
+	}
+
+	json.Unmarshal(data, &tasks)
+
+	for _, task := range tasks {
+		if task.ID >= nextID {
+			nextID = task.ID + 1
+		}
+	}
+}
+
+
 func GetTasks(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
 	json.NewEncoder(w).Encode(tasks)
 }
+
 
 func CreateTask(w http.ResponseWriter, r *http.Request) {
 
@@ -49,9 +75,12 @@ func CreateTask(w http.ResponseWriter, r *http.Request) {
 
 	tasks = append(tasks, task)
 
+	saveTasks()
+
 	w.Header().Set("Content-Type", "application/json")
 	json.NewEncoder(w).Encode(task)
 }
+
 
 func UpdateTask(w http.ResponseWriter, r *http.Request) {
 
@@ -90,6 +119,8 @@ func UpdateTask(w http.ResponseWriter, r *http.Request) {
 				Status:      updated.Status,
 			}
 
+			saveTasks()
+
 			w.Header().Set("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(tasks[i])
 			return
@@ -98,6 +129,7 @@ func UpdateTask(w http.ResponseWriter, r *http.Request) {
 
 	http.NotFound(w, r)
 }
+
 
 func DeleteTask(w http.ResponseWriter, r *http.Request) {
 
@@ -108,6 +140,8 @@ func DeleteTask(w http.ResponseWriter, r *http.Request) {
 		if tasks[i].ID == id {
 
 			tasks = append(tasks[:i], tasks[i+1:]...)
+
+			saveTasks()
 
 			w.WriteHeader(http.StatusNoContent)
 			return

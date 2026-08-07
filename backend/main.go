@@ -26,6 +26,8 @@ func enableCors(next http.Handler) http.Handler {
 
 func main() {
 
+	loadTasks()
+
 	router := mux.NewRouter()
 
 	router.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
