@@ -15,10 +15,19 @@ function App() {
   const [editingTask, setEditingTask] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
+  const [message, setMessage] = useState("");
 
   useEffect(() => {
     loadTasks();
   }, []);
+
+  function showMessage(text) {
+    setMessage(text);
+
+    setTimeout(() => {
+      setMessage("");
+    }, 2500);
+  }
 
   async function loadTasks() {
     try {
@@ -28,7 +37,7 @@ function App() {
 
       setTasks(data);
       setError("");
-    } catch (error) {
+    } catch {
       setError("Erro ao carregar tarefas");
     } finally {
       setLoading(false);
@@ -43,6 +52,8 @@ function App() {
         ...oldTasks,
         newTask,
       ]);
+
+      showMessage("Tarefa adicionada com sucesso!");
     } catch {
       setError("Erro ao criar tarefa");
     }
@@ -64,6 +75,8 @@ function App() {
       );
 
       setEditingTask(null);
+
+      showMessage("Tarefa atualizada com sucesso!");
     } catch {
       setError("Erro ao editar tarefa");
     }
@@ -91,6 +104,8 @@ function App() {
             : task
         )
       );
+
+      showMessage("Status da tarefa atualizado!");
     } catch {
       setError("Erro ao mover tarefa");
     }
@@ -105,6 +120,8 @@ function App() {
           (task) => task.id !== id
         )
       );
+
+      showMessage("Tarefa excluída com sucesso!");
     } catch {
       setError("Erro ao excluir tarefa");
     }
@@ -113,6 +130,12 @@ function App() {
   return (
     <div>
       <h1>Mini Kanban</h1>
+
+      {message && (
+        <div className="success-message">
+          {message}
+        </div>
+      )}
 
       {loading && <p>Carregando tarefas...</p>}
 

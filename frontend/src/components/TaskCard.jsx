@@ -1,6 +1,17 @@
 import "./TaskCard.css";
 
 function TaskCard({ task, updateTaskStatus, deleteTask, editTask }) {
+
+  function handleDelete() {
+    const confirmed = window.confirm(
+      "Tem certeza que deseja excluir esta tarefa?"
+    );
+
+    if (confirmed) {
+      deleteTask(task.id);
+    }
+  }
+
   return (
     <div className="task-card">
       <h3>{task.title}</h3>
@@ -18,7 +29,7 @@ function TaskCard({ task, updateTaskStatus, deleteTask, editTask }) {
 
           <button
             className="delete-button"
-            onClick={() => deleteTask(task.id)}
+            onClick={handleDelete}
           >
             Excluir
           </button>
