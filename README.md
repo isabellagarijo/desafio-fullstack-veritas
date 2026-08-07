@@ -10,40 +10,108 @@ Aplicação Kanban com três colunas fixas para gerenciamento de tarefas, utiliz
 
 ### Frontend
 
-- React
-- Vite
-- JavaScript
-- CSS
+* React
+* Vite
+* JavaScript
+* CSS
 
 ### Backend
 
-- Go
-- Gorilla Mux
-- API REST
+* Go
+* Gorilla Mux
+* API REST
 
 ---
 
 ## Funcionalidades
 
-- Criar tarefas com título e descrição
-- Visualizar tarefas separadas por status
-- Mover tarefas entre colunas:
-  - A Fazer
-  - Em Progresso
-  - Concluídas
-- Editar tarefas
-- Excluir tarefas
-- Validação de título obrigatório
-- Validação de status permitido
-- Comunicação entre frontend e backend via API REST
+* Criar tarefas com título e descrição
+* Visualizar tarefas separadas por status
+* Mover tarefas entre colunas:
+
+  * A Fazer
+  * Em Progresso
+  * Concluídas
+* Editar tarefas
+* Excluir tarefas
+* Validação de título obrigatório
+* Validação de status permitido
+* Comunicação entre frontend e backend via API REST
 
 ---
 
-## Como executar o projeto
+# Como executar o projeto
 
-### Backend
+## Backend
 
 Entre na pasta:
 
 ```bash
 cd backend
+```
+
+Execute a API:
+
+```bash
+go run .
+```
+
+O backend será iniciado em:
+
+```bash
+http://localhost:8080
+```
+
+---
+
+## Frontend
+
+Entre na pasta:
+
+```bash
+cd frontend
+```
+
+Instale as dependências:
+
+```bash
+npm install
+```
+
+Execute a aplicação:
+
+```bash
+npm run dev
+```
+
+Após iniciar, acesse o endereço informado pelo terminal.
+
+---
+
+## User Flow
+
+Fluxo das principais ações do usuário no sistema:
+
+![User Flow](docs/user-flow.png)
+
+---
+
+## Decisões técnicas
+
+O frontend foi desenvolvido utilizando React e Vite, consumindo uma API REST desenvolvida em Go.
+
+O backend utiliza armazenamento em memória para gerenciamento das tarefas, conforme permitido no escopo do desafio. A comunicação entre frontend e backend é realizada através de requisições HTTP utilizando os métodos REST (GET, POST, PUT e DELETE).
+
+---
+
+## Limitações conhecidas e melhorias futuras
+
+Atualmente as tarefas são armazenadas em memória e são perdidas quando o servidor backend é reiniciado.
+
+Como melhoria futura, seria possível implementar persistência em arquivo JSON ou banco de dados para manter os dados salvos permanentemente.
+
+Outras melhorias possíveis:
+
+* Implementação de testes automatizados;
+* Drag and drop para movimentação das tarefas;
+* Melhorias de acessibilidade e feedbacks visuais.
